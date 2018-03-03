@@ -10,6 +10,7 @@ import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.es.Entonces;
 import entidades.Cliente;
+import entidades.Tienda;
 
 public class Steps {
 	
@@ -17,6 +18,7 @@ public class Steps {
 	private String apellido;
 	private Cliente cliente;
 	private List<Cliente> clientesRegistrados;
+	private Tienda tienda;
 
 	@Dado("^que (.+) (.+) quiere convertirse en nuevo cliente$")
 	public void quiere_convertirse_en_nuevo_cliente(String nombre, String apellido) {
@@ -27,6 +29,14 @@ public class Steps {
 	@Dado("^que tenemos los siguiente clientes registrados:$")
 	public void tenemos_los_siguientes_clientes_registrados(@Format("yyyy-MM-dd") List<Cliente> clientesRegistrados) {
 	    this.clientesRegistrados = clientesRegistrados;
+	}
+
+	@Dado("^les asigno a mi tienda$")
+	public void les_asigno_a_mi_tienda() {
+		this.tienda = new Tienda();
+	    for (Cliente cliente: clientesRegistrados) {
+	    	this.tienda.asignarCliente(cliente);
+	    }
 	}
 	
 	@Cuando("^doy de alta sus datos en la plataforma$")
