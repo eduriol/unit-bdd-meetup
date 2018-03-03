@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import cucumber.api.DataTable;
 import cucumber.api.Format;
 import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dado;
@@ -63,6 +64,11 @@ public class Steps {
 	@Entonces("^recibe un mensaje de bienvenida$")
 	public void recibe_un_mensaje_de_bienvenida() {
 		assertEquals("¡Gracias por confiar en DC Comics!", this.cliente.obtenerUltimaNotificacionRecibida().obtenerTitulo());
-	}	
+	}
+	
+	@Entonces("^obtengo los siguientes clientes:$")
+	public void obtengo_los_siguientes_clientes(@Format("yyyy-MM-dd") DataTable clientesEsperadosConRegistroUltimaNavidad) {
+		clientesEsperadosConRegistroUltimaNavidad.diff(this.clientesRegistradosUltimaNavidad);
+	}
 	
 }
