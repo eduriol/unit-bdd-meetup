@@ -2,6 +2,10 @@ package stepdefinitions;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Date;
+import java.util.List;
+
+import cucumber.api.Format;
 import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.es.Entonces;
@@ -9,9 +13,10 @@ import entidades.Cliente;
 
 public class Steps {
 	
-	String nombre;
-	String apellido;
-	Cliente cliente;
+	private String nombre;
+	private String apellido;
+	private Cliente cliente;
+	private List<Cliente> clientesRegistrados;
 
 	@Dado("^que (.+) (.+) quiere convertirse en nuevo cliente$")
 	public void quiere_convertirse_en_nuevo_cliente(String nombre, String apellido) {
@@ -19,9 +24,14 @@ public class Steps {
 	    this.apellido = apellido;
 	}
 	
+	@Dado("^que tenemos los siguiente clientes registrados:$")
+	public void tenemos_los_siguientes_clientes_registrados(@Format("yyyy-MM-dd") List<Cliente> clientesRegistrados) {
+	    this.clientesRegistrados = clientesRegistrados;
+	}
+	
 	@Cuando("^doy de alta sus datos en la plataforma$")
 	public void doy_de_alta_sus_datos_en_la_plataforma() {
-		this.cliente = new Cliente("123456789", nombre, apellido);
+		this.cliente = new Cliente("123456789", nombre, apellido, new Date());
 	}	
 	
 	@Entonces("^empieza con (\\d+) puntos$")
