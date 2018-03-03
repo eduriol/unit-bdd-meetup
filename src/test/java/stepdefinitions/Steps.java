@@ -2,6 +2,9 @@ package stepdefinitions;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +22,7 @@ public class Steps {
 	private Cliente cliente;
 	private List<Cliente> clientesRegistrados;
 	private Tienda tienda;
+	private List<Cliente> clientesRegistradosUltimaNavidad;
 
 	@Dado("^que (.+) (.+) quiere convertirse en nuevo cliente$")
 	public void quiere_convertirse_en_nuevo_cliente(String nombre, String apellido) {
@@ -42,7 +46,14 @@ public class Steps {
 	@Cuando("^doy de alta sus datos en la plataforma$")
 	public void doy_de_alta_sus_datos_en_la_plataforma() {
 		this.cliente = new Cliente("123456789", nombre, apellido, new Date());
-	}	
+	}
+	
+	@Cuando("^solicito un listado de clientes registrados durante la pasada Navidad$")
+	public void solicito_un_listado_de_clientes_registrados_durante_la_pasada_Navidad() throws ParseException {
+		DateFormat formateadorFecha = new SimpleDateFormat("yyyy-MM-dd");
+		Date ultimaNavidad = formateadorFecha.parse("2017-12-25");
+		this.clientesRegistradosUltimaNavidad = this.tienda.obtenerClientesRegistradosEn(ultimaNavidad);
+	}
 	
 	@Entonces("^empieza con (\\d+) puntos$")
 	public void empieza_con_puntos(int puntosEsperados) {
