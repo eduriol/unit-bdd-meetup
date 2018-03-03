@@ -1,7 +1,10 @@
 package stepdefinitions;
 
+import static org.junit.Assert.assertEquals;
+
 import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dado;
+import cucumber.api.java.es.Entonces;
 import entidades.Cliente;
 
 public class Steps {
@@ -20,5 +23,10 @@ public class Steps {
 	public void doy_de_alta_sus_datos_en_la_plataforma() {
 		this.cliente = new Cliente("123456789", nombre, apellido);
 	}	
+	
+	@Entonces("^empieza con (\\d+) puntos$")
+	public void empieza_con_puntos(int puntosEsperados) {
+	    assertEquals(puntosEsperados, this.cliente.obtenerPuntos());
+	}
 	
 }

@@ -15,5 +15,11 @@ public class TestearQueCuandoRegistroUnNuevoCliente {
 		assertEquals("McFly", cliente.obtenerApellido());
 		assertEquals("123456789", cliente.obtenerNumeroCliente());
 	}
+	
+	@Test
+	public void debe_asignarse_100_puntos_al_cliente() {
+		Cliente cliente = new Cliente("123456789", "Marty", "McFly");
+		assertEquals(100, cliente.obtenerPuntos());
+	}
 
 }
