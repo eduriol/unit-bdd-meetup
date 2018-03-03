@@ -8,3 +8,8 @@ Quiero registrar nuevos clientes
 		Dado que Marty McFly quiere convertirse en nuevo cliente
 		Cuando doy de alta sus datos en la plataforma 
 		Entonces empieza con 100 puntos
+
+	Escenario: los nuevos clientes deben recibir un notificación de bienvenida
+		Dado que Jennifer Parker quiere convertirse en nuevo cliente
+		Cuando doy de alta sus datos en la plataforma 
+		Entonces recibe un mensaje de bienvenida
