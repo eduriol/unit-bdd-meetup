@@ -29,4 +29,9 @@ public class Steps {
 	    assertEquals(puntosEsperados, this.cliente.obtenerPuntos());
 	}
 	
+	@Entonces("^recibe un mensaje de bienvenida$")
+	public void recibe_un_mensaje_de_bienvenida() {
+		assertEquals("¡Gracias por confiar en DC Comics!", this.cliente.obtenerUltimaNotificacionRecibida().obtenerTitulo());
+	}	
+	
 }

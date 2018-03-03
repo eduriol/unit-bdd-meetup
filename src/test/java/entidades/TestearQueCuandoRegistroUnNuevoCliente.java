@@ -22,4 +22,10 @@ public class TestearQueCuandoRegistroUnNuevoCliente {
 		assertEquals(100, cliente.obtenerPuntos());
 	}
 
+	@Test
+	public void debe_enviarse_un_mensaje_de_bienvenida_al_cliente() {
+		Cliente cliente = new Cliente("123456789", "Marty", "McFly");
+		assertEquals("¡Gracias por confiar en DC Comics!", cliente.obtenerUltimaNotificacionRecibida().obtenerTitulo());
+	}
+	
 }
